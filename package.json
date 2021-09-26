@@ -1,0 +1,39 @@
+{
+  "name": "main-site-frontend",
+  "version": "0.0.1",
+  "description": "",
+  "main": "build.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "cross-env NODE_ENV=development node setup/build.js",
+    "build:prod": "cross-env NODE_ENV=production node setup/build.js",
+    "lint:eslint": "eslint --ext .js,.html .",
+    "format:eslint": "eslint --ext .js,.html . --fix",
+    "lint:prettier": "prettier \"**/*.js\" \"**/*.html\"  -c || (echo '↑↑ these files are not prettier formatted ↑↑' && exit 1)",
+    "format:prettier": "prettier \"**/*.js\" \"**/*.html\"  --write",
+    "lint": "npm run lint:eslint && npm run lint:prettier",
+    "format": "npm run format:eslint && npm run format:prettier"
+  },
+  "repository": {},
+  "author": "",
+  "license": "UNLICENSED",
+  "bugs": {},
+  "dependencies": {
+    "cross-env": "^7.0.3",
+    "eslint": "^7.22.0",
+    "lit": "^2.0.0-rc.2",
+    "lit-element": "^2.4.0",
+    "package-lock.json": "^1.0.0",
+    "rollup": "^2.42.0",
+    "rollup-plugin-analyzer": "^4.0.0",
+    "rollup-plugin-esbuild": "^3.0.2",
+    "rollup-plugin-node-resolve": "^5.2.0"
+  },
+  "devDependencies": {
+    "@open-wc/eslint-config": "^4.2.0",
+    "@open-wc/prettier-config": "^1.1.0",
+    "@web/dev-server": "^0.1.10",
+    "esbuild": "^0.9.4",
+    "prettier": "^2.2.1"
+  }
+}
