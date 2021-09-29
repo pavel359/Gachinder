@@ -23,6 +23,7 @@
     "eslint": "^7.22.0",
     "lit": "^2.0.0-rc.2",
     "lit-element": "^2.4.0",
+    "lit-element-router": "^2.0.3",
     "package-lock.json": "^1.0.0",
     "rollup": "^2.42.0",
     "rollup-plugin-analyzer": "^4.0.0",

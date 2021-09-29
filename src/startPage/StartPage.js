@@ -1,12 +1,31 @@
 import { LitElement, html, css } from 'lit';
 import { classMap } from 'lit/directives/class-map.js';
 import { styleMap } from 'lit/directives/style-map.js';
+import { router, outlet, navigator } from "lit-element-router";
 
-export class StartPage extends LitElement {
+import '.src/startPage/app-main';
+
+export class StartPage extends router(LitElement) {
+  static get properties() {
+    return {
+      route: { type: String },
+      params: { type: Object },
+      query: { type: Object }
+    };
+  }
+
+  static get routes() {
+    return [{
+      name: 'main-page',
+      pattern: "/main-page",
+    }];
+  }
 
   constructor() {
     super();
-
+    this.params = {};
+    this.query = {};
+    this.data = {};
     this.welcomeOpacity = { opacity: 1 };
     this.popupVisibility = {visibility: 'hidden'};
     this.container = { transform: `translate3d(0px, 0px, 0px)`};
@@ -17,6 +36,14 @@ export class StartPage extends LitElement {
     this.computedStyle = 0;
     this.computedStyleInitial = 0;
     this.iterator = 0;
+  }
+
+  router(route, params, query, data) {
+    this.route = route;
+    this.params = params;
+    this.query = query;
+    this.data = data;
+    console.log(route, params, query, data);
   }
 
   getSliderWidth = () => {
@@ -497,9 +524,10 @@ export class StartPage extends LitElement {
     `;
   }
 
+
   render() {
     return html`
-        <div class="app">
+        <div class="app active-route=${this.route}">
             <div class="bg">
                 <div class="bgImage"></div>
             </div>
@@ -528,7 +556,7 @@ export class StartPage extends LitElement {
                         </a> и <a class="aTerms" href="">Политика в отношении файлов Cookie</a>.</span>
                     </div>
                     <div class="anim"><span class="tooltip" data-tooltip="username must consist of 29 symbols.">?</span></div>
-                    <button class="regButton">Зарегестрироваться</button>
+                    <a href='src/startPage/main-page'><button class="regButton">Зарегестрироваться</button></a>
                 </div>
             </div>
             <div class="welcome" id="welcome" style="${styleMap(this.welcomeOpacity)}">
@@ -590,13 +618,8 @@ export class StartPage extends LitElement {
                     </div>
                 </div>
             </div>
-            
-            
-            
-            
-            
-            
         </div>
+        <main-page route="main-page"></main-page>
         `;
   }
 }
